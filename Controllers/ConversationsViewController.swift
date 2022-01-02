@@ -7,8 +7,10 @@
 
 import UIKit
 
-class ConversationsViewController: UITableViewController {
+class ConversationsViewController: UIViewController {
 
+    @IBOutlet weak var tabelview: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

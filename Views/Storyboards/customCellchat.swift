@@ -7,7 +7,7 @@
 
 import UIKit
 
-class customCellProfil: UITableViewCell {
+class customCellchat: UITableViewCell {
 
     @IBOutlet weak var profilIMG: UIImageView!
     

@@ -9,28 +9,22 @@ import UIKit
 
 class profilVC: UIViewController {
   
+    @IBOutlet weak var imgeProfil: UIImageView!
     
 
-    @IBOutlet weak var tabelview: UITableView!
+    @IBOutlet weak var userLbl: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
-    /*
-     UITableViewDataSource,UITableViewDelegate
-     
-     tabelview.dataSource = self
-     tabelview.delegate = self
-     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+   
+    @IBAction func logoutbtn(_ sender: UIButton) {
+        
+        
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
-*/
     /*
     // MARK: - Navigation
 
