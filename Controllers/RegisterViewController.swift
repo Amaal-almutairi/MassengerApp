@@ -6,15 +6,15 @@
 //
 
 import UIKit
-
+import Firebase
+import FirebaseAuth
 class RegisterViewController: UIViewController{
     
  //   var FN: String
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-      
+       
         emailLbl.delegate = self
         passwordLbl.delegate = self
         
@@ -40,19 +40,41 @@ class RegisterViewController: UIViewController{
     @IBOutlet weak var passwordLbl: UITextField!
     
 
-      
+    func adduser(){
+        if let email = emailLbl.text,let password = passwordLbl.text {
+        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authResult , error  in
+            guard let result = authResult, error == nil else {
+                print("Error creating user")
+                return
+            }
+            let user = result.user
+            print("Created User: \(user)")
+        })
+        }
+    }
         
     
 
 
     
     @IBAction func Registerbtn(_ sender: UIButton) {
-      
-        let VC = self.storyboard?.instantiateViewController(withIdentifier: "profilID") as! profilVC
         
-        VC.title = "Create Account"
-        self.navigationController?.pushViewController(VC, animated: true)
-      
+        if let email = emailLbl.text,let password = passwordLbl.text {
+        Auth.auth().createUser(withEmail: email, password: password, completion: { authResult , error  in
+            guard let result = authResult, error == nil else {
+                print("Error creating user \(error?.localizedDescription)")
+                return
+            }
+            let user = result.user
+            let VC = self.storyboard?.instantiateViewController(withIdentifier: "convId") as! ConversationsViewController
+            let navVC = UINavigationController(rootViewController: VC)
+            navVC.modalPresentationStyle = .fullScreen
+            
+          
+            self.present(navVC, animated: true)
+            print("Created User: \(user)")
+        })
+        }
     }
     
     

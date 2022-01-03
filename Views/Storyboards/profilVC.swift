@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 class profilVC: UIViewController {
   
     @IBOutlet weak var imgeProfil: UIImageView!
@@ -21,7 +21,20 @@ class profilVC: UIViewController {
     }
    
     @IBAction func logoutbtn(_ sender: UIButton) {
-        
+        let firebaseAuth = Auth.auth()
+       do {
+         try firebaseAuth.signOut()
+       } catch let signOutError as NSError {
+           DispatchQueue.main.async {
+               let VC = self.storyboard?.instantiateViewController(withIdentifier: "signInID") as! ConversationsViewController
+               VC.title = " log out succssfully"
+               self.navigationController?.pushViewController(VC, animated: true)
+           
+           }
+          
+         print("Error signing out: %@", signOutError)
+       }
+         
         
     }
     
