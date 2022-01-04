@@ -31,13 +31,13 @@ class ConversationsViewController: UIViewController {
             let isLoggedIn = UserDefaults.standard.bool(forKey: "logged_in")
             if !isLoggedIn {
                 // present login view controller
-                /*
+               /*
                 let vc = LoginViewController()
                 let nav = UINavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
                 present(nav, animated: false)
-                */
                 
+                */
                 DispatchQueue.main.async {
                 if Auth.auth().currentUser == nil {
                     let loginVC = self.storyboard?.instantiateViewController(identifier: "signInID") as! LoginViewController

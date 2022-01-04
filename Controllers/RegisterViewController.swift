@@ -39,7 +39,7 @@ class RegisterViewController: UIViewController{
     
     @IBOutlet weak var passwordLbl: UITextField!
     
-
+/*
     func adduser(){
         if let email = emailLbl.text,let password = passwordLbl.text {
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authResult , error  in
@@ -53,7 +53,7 @@ class RegisterViewController: UIViewController{
         }
     }
         
-    
+    */
 
 
     
@@ -71,7 +71,7 @@ class RegisterViewController: UIViewController{
             navVC.modalPresentationStyle = .fullScreen
             
           
-            self.present(navVC, animated: true)
+            self.present(navVC, animated: false)
             print("Created User: \(user)")
         })
         }

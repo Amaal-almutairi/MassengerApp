@@ -32,8 +32,8 @@
                                                     <rect key="frame" x="0.0" y="11" width="186" height="107"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gcq-4J-EO0">
-                                                            <rect key="frame" x="0.0" y="1.5" width="186" height="104.5"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gcq-4J-EO0">
+                                                            <rect key="frame" x="0.0" y="0.5" width="186" height="106"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -95,8 +95,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2vp-ob-Ln5">
                                 <rect key="frame" x="70" y="194" width="278" height="141"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="CAT-Ta-Y09">
-                                        <rect key="frame" x="0.0" y="0.0" width="278" height="141"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CAT-Ta-Y09">
+                                        <rect key="frame" x="0.0" y="0.5" width="278" height="140"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -346,7 +346,6 @@
         <!--Item-->
         <scene sceneID="6mU-88-P7m">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="V3p-jL-0Uv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AM3-u3-u1n" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" image="message" catalog="system" id="CyK-vb-fXw"/>
                     <toolbarItems/>
@@ -359,6 +358,7 @@
                         <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="sWD-Nc-WkD"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V3p-jL-0Uv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="441" y="236"/>
         </scene>
@@ -379,7 +379,7 @@
                                 <rect key="frame" x="0.0" y="163" width="414" height="665"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="iB4-qC-F6T">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newconCell" id="iB4-qC-F6T">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iB4-qC-F6T" id="Kf5-Qa-ZjL">
@@ -436,15 +436,10 @@
                                 <rect key="frame" x="10" y="770" width="394" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rd0-Ms-Gpr">
-                                        <rect key="frame" x="0.0" y="0.0" width="197" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M9r-vA-rY7">
-                                        <rect key="frame" x="197" y="0.0" width="197" height="50"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Enter"/>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="osR-Da-hKm"/>
@@ -508,7 +503,6 @@
     <resources>
         <image name="logo" width="3000" height="2000"/>
         <image name="message" catalog="system" width="128" height="113"/>
-        <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
