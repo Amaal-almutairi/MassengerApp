@@ -6,25 +6,34 @@
 //
 
 import UIKit
+import JGProgressHUD
 //addUserCell
 class NewConversation: UIViewController {
-
+    
+    private let spinner = JGProgressHUD(style: .dark)
+    
+    private let searchBar: UISearchBar = {
+           let searchBar = UISearchBar()
+           searchBar.placeholder = "Search for Users..."
+           return searchBar
+       }()
+    
+    @IBOutlet weak var tabelview: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navigationController?.navigationBar.topItem?.titleView = searchBar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel",
+                                                                   style: .done,
+                                                                   target: self,
+                                                                   action: #selector(dismissSelf))
+        searchBar.becomeFirstResponder()
     }
     
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc private func dismissSelf() {
+        dismiss(animated: true, completion: nil)
     }
-    */
+
+  
 
 }

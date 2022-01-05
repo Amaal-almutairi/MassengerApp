@@ -7,9 +7,11 @@
 
 import UIKit
 import FirebaseAuth
-
+import JGProgressHUD
 
 class LoginViewController: UIViewController {
+    
+    private let spinner = JGProgressHUD(style: .dark)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,9 @@ class LoginViewController: UIViewController {
     @IBAction func loginbtn(_ sender: Any) {
         loginButton()
         if let email = emailLbl.text,let password = passwordLbl.text {
+            
+            spinner.show(in: view)
+            
             Auth.auth().signIn(withEmail: email, password: password, completion: {[weak self] authResult , error  in
                 
                 guard let strongSelf = self else {
@@ -51,7 +56,7 @@ class LoginViewController: UIViewController {
                     VC.title = "Chat"
                     navVC.modalPresentationStyle = .fullScreen
                     strongSelf.present(navVC, animated: true)
-                    
+                    strongSelf.spinner.dismiss()
                     print("log in User succssfully: \(user)")
                 }
                 

@@ -8,12 +8,15 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import JGProgressHUD
 
 protocol RegisterDelegate:AnyObject {
     func rgisterSuccss()
 }
 
-class RegisterViewController: UIViewController{
+class RegisterViewController: UIViewController {
+    
+    private let spinner = JGProgressHUD(style: .dark)
     
     weak var mydelegate:RegisterDelegate?
     //   var FN: String
@@ -70,13 +73,16 @@ class RegisterViewController: UIViewController{
                   //   alertUserLoginError()
                   return
               }
+        spinner.show(in: view)
         
         if let email = emailLbl.text,let password = passwordLbl.text {
             DatabaseManger.shared.userExists(with: email, completion: { [weak self] exists in
                 guard let strongSelf = self else {
                     return
                 }
-                
+                DispatchQueue.main.async {
+                    strongSelf.spinner.dismiss()
+                }
                 guard !exists else {
                     // user already exists
                     strongSelf.alertUserLoginError(message: "Looks like a user account for that email address already exists.")

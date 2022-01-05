@@ -11,7 +11,7 @@ import FirebaseAuth
 class ConversationsViewController: UIViewController {
 
     @IBOutlet weak var tabelview: UITableView!
-    
+  //  @IBOutlet weak var nomessage:UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,7 +19,11 @@ class ConversationsViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(adduserAction))
 
-        
+        tabelview.isHidden = true
+     //   nomessage.isHidden = true
+        tabelview.delegate = self
+        tabelview.dataSource = self
+        fetchConversations()
        }
         // Do any additional setup after loading the view.
 
@@ -29,6 +33,11 @@ class ConversationsViewController: UIViewController {
         self.navigationController?.pushViewController(profilevc, animated: true)
         
     }
+    private func fetchConversations(){
+           // fetch from firebase and either show table or label
+           
+           tabelview.isHidden = false
+       }
     
     @objc func adduserAction() {
         
@@ -57,6 +66,29 @@ class ConversationsViewController: UIViewController {
         }
                     
   
+extension ConversationsViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        
+        cell.textLabel?.text = "Hello"
+        cell.accessoryType = .disclosureIndicator
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let chatVC = ChatVC()
+        let cell = tableView.cellForRow(at: indexPath)!
+        chatVC.title = cell.textLabel?.text
+        chatVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(chatVC, animated: true)
+    }
+}
 
 
 
