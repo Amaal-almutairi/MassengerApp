@@ -24,13 +24,13 @@ class profilVC: UIViewController {
         let firebaseAuth = Auth.auth()
        do {
          try firebaseAuth.signOut()
-       } catch let signOutError as NSError {
            DispatchQueue.main.async {
-               let VC = self.storyboard?.instantiateViewController(withIdentifier: "signInID") as! ConversationsViewController
-               VC.title = " log out succssfully"
-               self.navigationController?.pushViewController(VC, animated: true)
+            
+               self.navigationController?.popToRootViewController(animated: true)
            
            }
+       } catch let signOutError as NSError {
+           
           
          print("Error signing out: %@", signOutError)
        }

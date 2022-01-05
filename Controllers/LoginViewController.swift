@@ -8,14 +8,17 @@
 import UIKit
 import FirebaseAuth
 
+
 class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Firebase Login / check to see if email is taken
         // try to create an account
-      
+        if Auth.auth().currentUser?.uid != nil {
+            goToConversation()
         }
+    }
     
     @IBOutlet weak var msgLbl: UILabel!
     
@@ -27,44 +30,54 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func loginbtn(_ sender: Any) {
-        if let email = emailLbl.text,let password = passwordLbl.text {
-       Auth.auth().signIn(withEmail: email, password: password, completion: { authResult , error  in
-            guard let result = authResult, error == nil else {
-                print("Error creating user: \(error?.localizedDescription)")
-                return
-            }
-            let user = result.user
-           DispatchQueue.main.async {
-           let VC = self.storyboard?.instantiateViewController(withIdentifier: "convId") as! ConversationsViewController
-           VC.title = "Create Account"
-           self.navigationController?.pushViewController(VC, animated: true)
-       
-            print("log in User succssfully: \(user)")
-           }})
-            
         loginButton()
-        
- 
-    
+        if let email = emailLbl.text,let password = passwordLbl.text {
+            Auth.auth().signIn(withEmail: email, password: password, completion: {[weak self] authResult , error  in
+                
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                guard let result = authResult, error == nil else {
+                    print("Error creating user: \(error?.localizedDescription)")
+                    return
+                }
+                
+                let user = result.user
+                DispatchQueue.main.async {
+                    
+                    let VC = strongSelf.storyboard?.instantiateViewController(withIdentifier: "convId") as! ConversationsViewController
+                    let navVC = UINavigationController(rootViewController: VC)
+                    VC.title = "Chat"
+                    navVC.modalPresentationStyle = .fullScreen
+                    strongSelf.present(navVC, animated: true)
+                    
+                    print("log in User succssfully: \(user)")
+                }
+                
+            })
+            
         }
     }
     
-    @IBAction func loginfacebook(_ sender: UIButton) {
-        
+    func goToConversation(){
         DispatchQueue.main.async {
            let VC = self.storyboard?.instantiateViewController(withIdentifier: "convId") as! ConversationsViewController
            VC.title = "Create Account"
            self.navigationController?.pushViewController(VC, animated: true)
-       
-        
-        }}
+        }
+    }
+    
+    @IBAction func loginfacebook(_ sender: UIButton) {
+        goToConversation()
+   }
     
     @IBAction func Regbtn(_ sender: UIButton) {
        
         let VC = self.storyboard?.instantiateViewController(withIdentifier: "RegisterID") as! RegisterViewController
         VC.title = "Create Account"
         self.navigationController?.pushViewController(VC, animated: true)
-      
+//ظظself.present(VC, animated: true, completion: nil)
     }
 
    
@@ -120,3 +133,12 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 */
+
+
+extension LoginViewController:RegisterDelegate {
+    func rgisterSuccss() {
+        
+        goToConversation()
+    }
+    
+}
