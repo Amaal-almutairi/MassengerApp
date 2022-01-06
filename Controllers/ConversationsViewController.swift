@@ -19,7 +19,8 @@ class ConversationsViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(adduserAction))
         
-       
+       // tabelview.isHidden = true
+      //  nomessage.isHidden = true
         tabelview.delegate = self
         tabelview.dataSource = self
         fetchConversations()
@@ -41,10 +42,16 @@ class ConversationsViewController: UIViewController {
     
     @objc func adduserAction() {
         
+        let vc = NewConversation()
+                let navVC = UINavigationController(rootViewController: vc)
+                present(navVC,animated: true)
+      /*
         let loginVC = self.storyboard?.instantiateViewController(identifier: "newconv") as! NewConversation
         
         //  nav.modalPresentationStyle = .fullScreen
         self.present(loginVC, animated: false)
+    
+       */
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

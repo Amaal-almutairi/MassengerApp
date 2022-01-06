@@ -85,14 +85,14 @@ class RegisterViewController: UIViewController {
                 guard let strongSelf = self else {
                     return
                 }
-                DispatchQueue.main.async {
-                    strongSelf.spinner.dismiss()
-                }
+                
                 guard !exists else {
                     // user already exists
                     strongSelf.alertUserLoginError(message: "Looks like a user account for that email address already exists.")
                     return
                 }
+                UserDefaults.standard.setValue(email, forKey: "email")
+                UserDefaults.standard.setValue("\(firstName) \(lastName)", forKey: "name")
                 
                 
                 Auth.auth().createUser(withEmail: email, password: password, completion: { authResult , error  in
@@ -101,15 +101,15 @@ class RegisterViewController: UIViewController {
                         print("Error creating user \(error?.localizedDescription)")
                         return
                     }
-                    
+                    DispatchQueue.main.async {
+                        strongSelf.spinner.dismiss()
+                    }
                     let user = result.user
                     print("Create User: \(user)")
                     
                     
                     
-                    UserDefaults.standard.setValue(email, forKey: "email")
-                    UserDefaults.standard.setValue("\(firstName) \(lastName)", forKey: "name")
-                    
+                  
                     let chatUser = ChatAppUser (firstName: firstName,
                                                 lastName: lastName,
                                                 emailAddress: email)

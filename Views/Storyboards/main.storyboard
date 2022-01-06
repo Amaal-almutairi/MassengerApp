@@ -34,7 +34,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vgx-ZD-Lh4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-419" y="110"/>
+            <point key="canvasLocation" x="1000" y="232"/>
         </scene>
         <!--Conversations View Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -116,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1240.5797101449277" y="231.69642857142856"/>
+            <point key="canvasLocation" x="1878" y="232"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="9MJ-VO-ALS">
@@ -377,57 +377,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HH9-Ga-PPG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3609" y="232"/>
-        </scene>
-        <!--New Conversation-->
-        <scene sceneID="uPa-ay-9eK">
-            <objects>
-                <viewController id="sin-Qx-mRQ" customClass="NewConversation" customModule="MassengerApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1e1-TJ-UDK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYu-Lm-kZz">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3yG-a6-Gzt">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newconvCell" rowHeight="60" id="fQP-LS-rMj">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fQP-LS-rMj" id="fzd-dv-gAo">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="gUx-3f-bTR"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="3yG-a6-Gzt" firstAttribute="leading" secondItem="gUx-3f-bTR" secondAttribute="leading" id="AIU-dW-2v8"/>
-                            <constraint firstItem="gUx-3f-bTR" firstAttribute="trailing" secondItem="PYu-Lm-kZz" secondAttribute="trailing" id="BS5-Fq-jLk"/>
-                            <constraint firstItem="gUx-3f-bTR" firstAttribute="bottom" secondItem="PYu-Lm-kZz" secondAttribute="bottom" id="HjM-sY-Efr"/>
-                            <constraint firstItem="gUx-3f-bTR" firstAttribute="bottom" secondItem="3yG-a6-Gzt" secondAttribute="bottom" id="K8x-it-TbA"/>
-                            <constraint firstItem="PYu-Lm-kZz" firstAttribute="top" secondItem="gUx-3f-bTR" secondAttribute="top" id="Ny6-c8-4en"/>
-                            <constraint firstItem="3yG-a6-Gzt" firstAttribute="top" secondItem="gUx-3f-bTR" secondAttribute="top" id="VRd-xO-sdN"/>
-                            <constraint firstItem="gUx-3f-bTR" firstAttribute="trailing" secondItem="3yG-a6-Gzt" secondAttribute="trailing" id="i6r-Cw-FXv"/>
-                            <constraint firstItem="PYu-Lm-kZz" firstAttribute="leading" secondItem="gUx-3f-bTR" secondAttribute="leading" id="n2r-L9-bp6"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="nomessage" destination="PYu-Lm-kZz" id="cfz-HQ-oho"/>
-                        <outlet property="tableview" destination="3yG-a6-Gzt" id="Y2Y-rq-ojF"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E1C-JP-UFD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2028.985507246377" y="231.69642857142856"/>
         </scene>
         <!--ChatVC-->
         <scene sceneID="bR1-eO-Lhc">

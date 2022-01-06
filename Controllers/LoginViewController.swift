@@ -43,7 +43,9 @@ class LoginViewController: UIViewController {
                 guard let strongSelf = self else {
                     return
                 }
-                
+                DispatchQueue.main.async {
+                    strongSelf.spinner.dismiss(animated: true)
+                }
                 guard let result = authResult, error == nil else {
                     print("Error creating user: \(error?.localizedDescription)")
                     return
@@ -57,7 +59,7 @@ class LoginViewController: UIViewController {
                     VC.title = "Chat"
                     navVC.modalPresentationStyle = .fullScreen
                     strongSelf.present(navVC, animated: true)
-                    strongSelf.spinner.dismiss()
+                    
                     print("log in User succssfully: \(user)")
                 }
                 
