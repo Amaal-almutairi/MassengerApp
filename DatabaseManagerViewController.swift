@@ -16,7 +16,11 @@ final class DatabaseManger {
     
     private let database = Database.database(url: "https://chat-62cce-default-rtdb.europe-west1.firebasedatabase.app").reference()
     
-  
+    static func safeEmail(emailAddress:String) -> String {
+        var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
+        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+        return safeEmail
+    }
     
     
     
@@ -53,9 +57,18 @@ extension DatabaseManger {
     }
     
     /// Insert new user to database
-    public func insertUser(with user: ChatAppUser){
+    public func insertUser(with user: ChatAppUser, completion: @escaping (Bool) -> Void){
         
-        database.child(user.safeEmail).setValue(["first_name":user.firstName,"last_name":user.lastName]
+        database.child(user.safeEmail).setValue(["first_name":user.firstName,"last_name":user.lastName], withCompletionBlock: {
+            error, _ in
+            guard error == nil else {
+                print("failed to write to database")
+                completion(false)
+                return
+            }
+            completion(true)
+            
+        }
         )
     }
 }
@@ -70,5 +83,9 @@ struct ChatAppUser {
         var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
         safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
         return safeEmail
+    }
+    var profilePicture : String {
+        
+        return "\(safeEmail)_profile_picture.png"
     }
 }

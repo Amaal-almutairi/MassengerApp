@@ -10,6 +10,7 @@ import Firebase
 import FirebaseAuth
 import JGProgressHUD
 
+
 protocol RegisterDelegate:AnyObject {
     func rgisterSuccss()
 }
@@ -32,6 +33,10 @@ class RegisterViewController: UIViewController {
                                              action: #selector(didTapChangeProfilePic))
         
         logoIMG.addGestureRecognizer(gesture)
+        logoIMG.layer.masksToBounds = true
+        logoIMG.layer.cornerRadius = logoIMG.bounds.width / 2
+        
+        
     }
     
     @objc private func didTapChangeProfilePic() {
@@ -105,14 +110,38 @@ class RegisterViewController: UIViewController {
                     UserDefaults.standard.setValue(email, forKey: "email")
                     UserDefaults.standard.setValue("\(firstName) \(lastName)", forKey: "name")
                     
+                    let chatUser = ChatAppUser (firstName: firstName,
+                                                lastName: lastName,
+                                                emailAddress: email)
                     
-                    DatabaseManger.shared.insertUser(with: ChatAppUser (firstName: firstName,
-                                                                        lastName: lastName,
-                                                                        emailAddress: email))
+                    DatabaseManger.shared.insertUser(with: chatUser, completion: {succcess in
+                        if succcess {
+                            guard let image = strongSelf.logoIMG.image,
+                                  let data = image.pngData() else {
+                                      return
+                                  }
+                            let fileName = chatUser.profilePicture
+                            StorageManager.shared.uploadProfilePicture(with: data, fileName: fileName, completion: {
+                                result in
+                                switch result{
+                                case . success(let downloadURL):
+                                    UserDefaults.standard.set(downloadURL, forKey: "profilePicture")
+                                    print(downloadURL)
+                                case .failure(let error):
+                                    print("Storage manger error : \(error)")
+                                }
+                            })
+                        }
+                        
+                    } )
+                    
+                    DispatchQueue.main.async {
+                        self?.mydelegate?.rgisterSuccss()
+                        strongSelf.navigationController?.popViewController(animated: true)
+                        
+                    }
                     
                     
-                    
-                    strongSelf.navigationController?.dismiss(animated: true, completion: nil)
                     print("Created User: \(user)")
                 })
             }

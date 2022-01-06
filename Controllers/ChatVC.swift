@@ -8,8 +8,8 @@
 import UIKit
 import MessageKit
 
-//import InputBarAccessoryView
-// message model
+
+
 struct Message: MessageType {
     
     public var sender: SenderType // sender for each message
@@ -40,11 +40,11 @@ class ChatVC: MessagesViewController {
         messages.append(Message(sender: selfSender, messageId: "1", sentDate: Date(), kind: .text("Hello word message. Hello word message. Hello word message.")))
         
         
-        view.backgroundColor = .red
+        
         messagesCollectionView.messagesDataSource = self
                messagesCollectionView.messagesLayoutDelegate = self
                messagesCollectionView.messagesDisplayDelegate = self
-            //   messageInputBar.delegate = self
+          
         
       
     }

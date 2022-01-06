@@ -10,6 +10,10 @@ import JGProgressHUD
 //addUserCell
 class NewConversation: UIViewController {
     
+    @IBOutlet weak var tableview: UITableView!
+    
+   
+    
     private let spinner = JGProgressHUD(style: .dark)
     
     private let searchBar: UISearchBar = {
@@ -18,7 +22,7 @@ class NewConversation: UIViewController {
            return searchBar
        }()
     
-    @IBOutlet weak var tabelview: UITableView!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.topItem?.titleView = searchBar
@@ -36,4 +40,10 @@ class NewConversation: UIViewController {
 
   
 
+}
+
+extension NewConversation : UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
 }

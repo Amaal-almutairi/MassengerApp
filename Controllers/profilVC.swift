@@ -7,17 +7,24 @@
 
 import UIKit
 import FirebaseAuth
+import SDWebImage
+
 class profilVC: UIViewController {
   
     @IBOutlet weak var imgeProfil: UIImageView!
-    
-
     @IBOutlet weak var userLbl: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "profile"
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+            return
+        }
+        setProfileImage(email)
+        userLbl.text = email
+        imgeProfil.layer.masksToBounds = true
+        imgeProfil.layer.cornerRadius = imgeProfil.bounds.width / 2
     }
    
     @IBAction func logoutbtn(_ sender: UIButton) {
@@ -37,15 +44,21 @@ class profilVC: UIViewController {
          
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setProfileImage(_ email: String) {
+        let safeEmail = DatabaseManger.safeEmail(emailAddress: email)
+        let fileName = "\(safeEmail)_profile_picture.png"
+        let path = "images/\(fileName)"
+        
+        StorageManager.shared.downloadURL(for: path, completion: {result in
+            switch result {
+            case .success(let url):
+                self.imgeProfil.sd_setImage(with: url, placeholderImage: UIImage(systemName: "person.circle"))
+            case .failure(let error):
+                print(error)
+            }
+        })
     }
-    */
+
+    
 
 }

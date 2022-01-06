@@ -31,6 +31,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordLbl: UITextField!
     
     
+    
     @IBAction func loginbtn(_ sender: Any) {
         loginButton()
         if let email = emailLbl.text,let password = passwordLbl.text {
@@ -80,8 +81,10 @@ class LoginViewController: UIViewController {
     @IBAction func Regbtn(_ sender: UIButton) {
        
         let VC = self.storyboard?.instantiateViewController(withIdentifier: "RegisterID") as! RegisterViewController
+        VC.mydelegate = self
         VC.title = "Create Account"
         self.navigationController?.pushViewController(VC, animated: true)
+        
 //ظظself.present(VC, animated: true, completion: nil)
     }
 
