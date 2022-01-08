@@ -121,8 +121,10 @@ extension NewConversation: UISearchBarDelegate {
     }
     
     func searchUsers(query: String) {
+        
         // check if array has firebase results
         if hasFetched {
+            
             // if it does: filter
             filterUsers(with: query)
         }
@@ -131,6 +133,7 @@ extension NewConversation: UISearchBarDelegate {
             DatabaseManger.shared.getAllUsers(completion: { [weak self] result in
                 switch result {
                 case .success(let usersCollection):
+                    
                     self?.hasFetched = true
                     self?.users = usersCollection
                     self?.filterUsers(with: query)
@@ -142,8 +145,10 @@ extension NewConversation: UISearchBarDelegate {
     }
     
     func filterUsers(with term: String) {
+        
         // update the UI: eitehr show results or show no results label
         guard let currentUserEmail = UserDefaults.standard.value(forKey: "email") as? String, hasFetched else {
+            
             return
         }
         

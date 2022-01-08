@@ -1,9 +1,3 @@
-//
-//  RegisterViewController.swift
-//  MassengerApp
-//
-//  Created by Amaal almutairi on 02/01/2022.
-//
 
 import UIKit
 import Firebase

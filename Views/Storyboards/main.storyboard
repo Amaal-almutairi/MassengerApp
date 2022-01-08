@@ -403,28 +403,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="q0f-OQ-6Cn">
-                                <rect key="frame" x="10" y="770" width="394" height="50"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rd0-Ms-Gpr">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="osR-Da-hKm"/>
-                                </constraints>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LBK-eX-rJr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="q0f-OQ-6Cn" firstAttribute="leading" secondItem="LBK-eX-rJr" secondAttribute="leading" constant="10" id="Hd8-Lj-9LN"/>
                             <constraint firstItem="YMM-GG-fts" firstAttribute="leading" secondItem="LBK-eX-rJr" secondAttribute="leading" id="cli-5F-eBT"/>
                             <constraint firstItem="LBK-eX-rJr" firstAttribute="trailing" secondItem="YMM-GG-fts" secondAttribute="trailing" id="dWf-D1-ZWQ"/>
-                            <constraint firstItem="LBK-eX-rJr" firstAttribute="trailing" secondItem="q0f-OQ-6Cn" secondAttribute="trailing" constant="10" id="fZm-8S-Hzn"/>
-                            <constraint firstItem="q0f-OQ-6Cn" firstAttribute="top" secondItem="YMM-GG-fts" secondAttribute="bottom" constant="8" symbolic="YES" id="pNr-jn-g81"/>
                             <constraint firstItem="YMM-GG-fts" firstAttribute="top" secondItem="LBK-eX-rJr" secondAttribute="top" id="zNY-lq-eK0"/>
                         </constraints>
                     </view>
