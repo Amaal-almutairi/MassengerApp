@@ -403,6 +403,7 @@ extension DatabaseManger {
                     let date = chatVC.dateFormatter.date(from: dateString)else {
                         return nil
                 }
+                
                 var kind: MessageKind?
                               if type == "photo" {
                                   // photo
@@ -690,7 +691,7 @@ extension DatabaseManger {
         }
     }
 
-    public func conversationExists(iwth targetRecipientEmail: String, completion: @escaping (Result<String, Error>) -> Void) {
+    public func conversationExists(with targetRecipientEmail: String, completion: @escaping (Result<String, Error>) -> Void) {
         let safeRecipientEmail = DatabaseManger.safeEmail(emailAddress: targetRecipientEmail)
         guard let senderEmail = UserDefaults.standard.value(forKey: "email") as? String else {
             return

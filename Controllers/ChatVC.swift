@@ -204,7 +204,7 @@ extension chatVC: UIImagePickerControllerDelegate, UINavigationControllerDelegat
             // check in datbase if conversation with these two users exists
             // if it does, reuse conversation id
             // otherwise use existing code
-            DatabaseManger.shared.conversationExists(iwth: email, completion: { [weak self] result in
+        DatabaseManger.shared.conversationExists(with: email, completion: { [weak self] result in
                 guard let strongSelf = self else {
                     return
                 }

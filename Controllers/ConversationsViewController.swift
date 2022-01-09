@@ -11,7 +11,7 @@ import JGProgressHUD
 
 final class ConversationsViewController: UIViewController{
 
-    
+    var identifier = "conveCell"
 
     private var loginObserver: NSObjectProtocol?
     
@@ -35,7 +35,7 @@ final class ConversationsViewController: UIViewController{
        tabelview.dataSource = self
         fetchConversations()
         startListeningForCOnversations()
-
+        //tabelview.register(ConversationCustomCell.self, forCellReuseIdentifier: identifier)
                loginObserver = NotificationCenter.default.addObserver(forName: .didLogInNotification, object: nil, queue: .main, using: { [weak self] _ in
                    guard let strongSelf = self else {
                        return
@@ -98,7 +98,7 @@ final class ConversationsViewController: UIViewController{
             // check in datbase if conversation with these two users exists
             // if it does, reuse conversation id
             // otherwise use existing code
-            DatabaseManger.shared.conversationExists(iwth: email, completion: { [weak self] result in
+        DatabaseManger.shared.conversationExists(with: email, completion: { [weak self] result in
                 guard let strongSelf = self else {
                     return
                 }
@@ -172,16 +172,17 @@ final class ConversationsViewController: UIViewController{
 
 extension ConversationsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+      return  conversations.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-                
-                cell.textLabel?.text = "Hello"
-                cell.accessoryType = .disclosureIndicator
-                
-                return cell
+        let model = conversations[indexPath.row]
+        let cell = tabelview.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+          as! ConversationCustomCell
+        
+        cell.configure(with: model)
+        return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
            tableView.deselectRow(at: indexPath, animated: true)
